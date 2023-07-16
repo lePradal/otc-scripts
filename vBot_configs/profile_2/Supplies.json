@@ -1,0 +1,12 @@
+{
+  "supplies": {
+    "currentProfile": "Default",
+    "Default": {
+      "items": [
+
+      ],
+      "capSwitch": false,
+      "SoftBoots": false
+    }
+  }
+}
