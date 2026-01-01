@@ -348,19 +348,19 @@ local function sendMessageInWorldChat()
     if IS_IN_WOLRD_CHAT_MESSAGE_COLLDOWN then
         return
     end
-    
+
     local chat = getChannelId("World Chat")
     if not chat then
         info("Chat not found.")
         return
     end
-    
+
     local chatMessage = getWorldInviteMessage()
-    
+
     if not chatMessage then
         return
     end
-    
+
     sayChannel(chat, chatMessage)
     lastWorldChatMessageTime = os.time()
 end
@@ -634,57 +634,46 @@ end)
 -- UI ----------------------------------------------------------
 UI.Separator()
 
-local statusWidget = UI.DualLabel("Status:", partyState)
-local autoPtStatusLabel = statusWidget.right
-
-local membersWidget = UI.DualLabel("Members:", tostring(partyMembersCount))
-local autoPtMembersLabel = membersWidget.right
-
-local lowestLevelWidget = UI.DualLabel("Lowest L:", tostring(lowestLevel))
-local autoPtLowestLevelLabel = lowestLevelWidget.right
-
-local highestLevelWidget = UI.DualLabel("Highest L:", tostring(highestLevel))
-local autoPtHighestLevelLabel = highestLevelWidget.right
-
-local minLevelWidget = UI.DualLabel("Min Level:", tostring(minLevelToShare))
-local autoPtMinLevelLabel = minLevelWidget.right
-
-local maxLevelWidget = UI.DualLabel("Max Level:", tostring(maxLevelToShare))
-local autoPtMaxLevelLabel = maxLevelWidget.right
-
-updatingLabels = function()
-    if autoPtStatusLabel then
-        autoPtStatusLabel:setText(partyState)
-        local color = (partyState == "idle") and "green" or "orange"
-        if partyState == "processingKicks" then
-            color = "red"
-        end
-        autoPtStatusLabel:setColor(color)
-    end
-    if autoPtMembersLabel then
-        autoPtMembersLabel:setText(tostring(partyMembersCount))
-    end
-    if autoPtLowestLevelLabel then
-        autoPtLowestLevelLabel:setText(tostring(lowestLevel))
-    end
-    if autoPtHighestLevelLabel then
-        autoPtHighestLevelLabel:setText(tostring(highestLevel))
-    end
-    if autoPtMinLevelLabel then
-        autoPtMinLevelLabel:setText(tostring(minLevelToShare))
-    end
-    if autoPtMaxLevelLabel then
-        autoPtMaxLevelLabel:setText(tostring(maxLevelToShare))
-    end
-end
-
-UI.Separator()
-
 local autoPartyUI = setupUI([[
 UIWidget
   layout:
     type: verticalBox
     fit-children: true
+
+  DualLabel
+    height: 15
+    id: statusLabel
+    text: Status:
+    margin-top: 5
+
+  DualLabel
+    height: 15
+    id: membersLabel
+    text: Members:
+
+  DualLabel
+    height: 15
+    id: lowestLevelLabel
+    text: Lowest Level:
+
+  DualLabel
+    height: 15
+    id: highestLevelLabel
+    text: Highest Level:
+
+  DualLabel
+    height: 15
+    id: minLevelLabel
+    text: Min Level:
+
+  DualLabel
+    height: 15
+    id: maxLevelLabel
+    text: Max Level:
+
+  HorizontalSeparator
+    margin-top: 8
+    margin-bottom: 8
 
   Label
     id: levelingLabel
@@ -695,7 +684,7 @@ UIWidget
 
   Panel
     id: maxMembersRow
-    height: 20
+    height: 18
     Label
       text: Max Members:
       anchors.left: parent.left
@@ -711,7 +700,7 @@ UIWidget
 
   Panel
     id: minLevelRow
-    height: 20
+    height: 18
     margin-top: 2
     Label
       text: Min Level:
@@ -728,7 +717,7 @@ UIWidget
 
   Panel
     id: maxLevelRow
-    height: 20
+    height: 18
     margin-top: 2
     Label
       text: Max Level:
@@ -745,7 +734,7 @@ UIWidget
 
   Panel
     id: dynamicMinRow
-    height: 20
+    height: 18
     margin-top: 4
     CheckBox
       id: check
@@ -762,7 +751,7 @@ UIWidget
 
   Panel
     id: dynamicMaxRow
-    height: 20
+    height: 18
     margin-top: 2
     CheckBox
       id: check
@@ -788,7 +777,7 @@ UIWidget
 
   Panel
     id: alreadInvited
-    height: 20
+    height: 18
     CheckBox
       id: check
       anchors.left: parent.left
@@ -804,7 +793,7 @@ UIWidget
 
   Panel
     id: levelNotAllowed
-    height: 20
+    height: 18
     CheckBox
       id: check
       anchors.left: parent.left
@@ -820,7 +809,7 @@ UIWidget
 
   Panel
     id: partyIsFull
-    height: 20
+    height: 18
     CheckBox
       id: check
       anchors.left: parent.left
@@ -836,7 +825,7 @@ UIWidget
 
   Panel
     id: playerBlocked
-    height: 20
+    height: 18
     CheckBox
       id: check
       anchors.left: parent.left
@@ -861,7 +850,7 @@ UIWidget
 
   Panel
     id: worldChat
-    height: 20
+    height: 18
     CheckBox
       id: check
       anchors.left: parent.left
@@ -877,7 +866,7 @@ UIWidget
 
   Panel
     id: showMembers
-    height: 20
+    height: 18
     CheckBox
       id: check
       anchors.left: parent.left
@@ -893,7 +882,7 @@ UIWidget
 
   Panel
     id: showExp
-    height: 20
+    height: 18
     CheckBox
       id: check
       anchors.left: parent.left
@@ -909,7 +898,7 @@ UIWidget
 
   Panel
     id: showBonus
-    height: 20
+    height: 18
     CheckBox
       id: check
       anchors.left: parent.left
@@ -925,7 +914,7 @@ UIWidget
 
   Panel
     id: showRange
-    height: 20
+    height: 18
     CheckBox
       id: check
       anchors.left: parent.left
@@ -941,7 +930,7 @@ UIWidget
   
   Panel
     id: huntAreaLabelPanel
-    height: 20
+    height: 18
     margin-top: 8
     Label
       id: huntLabel
@@ -953,7 +942,7 @@ UIWidget
 
   Panel
     id: huntAreaInputPanel
-    height: 20
+    height: 18
     BotTextEdit
       id: value
       anchors.fill: parent
@@ -961,14 +950,35 @@ UIWidget
       margin-right: 5
 ]], setDefaultTab(DEFAULT_TAB))
 
--- === LOGICA DOS WIDGETS ===
+-- Lógica da UI ------------------------------------------------
 
--- 1. Configurações de Level
+-- Labels informativas
+updatingLabels = function()
+    autoPartyUI.statusLabel.value:setText(partyState)
+    local color = (partyState == "idle") and "green" or "orange"
+    if partyState == "processingKicks" then
+        color = "red"
+    end
+    autoPartyUI.statusLabel.value:setColor(color)
+
+    autoPartyUI.membersLabel.value:setText(tostring(partyMembersCount))
+
+    autoPartyUI.lowestLevelLabel.value:setText(tostring(lowestLevel))
+
+    autoPartyUI.highestLevelLabel.value:setText(tostring(highestLevel))
+
+    autoPartyUI.minLevelLabel.value:setText(tostring(minLevelToShare))
+
+    autoPartyUI.maxLevelLabel.value:setText(tostring(maxLevelToShare))
+end
+
+-- Configurações de membros
 autoPartyUI.maxMembersRow.value:setText(tostring(storage.auto_party.maxMembers))
 autoPartyUI.maxMembersRow.value.onTextChange = function(widget, text)
     storage.auto_party.maxMembers = tonumber(text) or 30
 end
 
+-- Configurações de Level
 autoPartyUI.minLevelRow.value:setText(tostring(storage.auto_party.staticMinLevel))
 autoPartyUI.minLevelRow.value:setEnabled(not storage.auto_party.dynamicMinLeveling)
 autoPartyUI.minLevelRow.value.onTextChange = function(widget, text)
@@ -997,7 +1007,7 @@ autoPartyUI.dynamicMaxRow.check.onClick = function(widget)
     maxAllowedLevel = getMaxAllowedLevel()
 end
 
--- 2. Configurações de Mensagem (usando a função otimizada)
+-- Configurações de Mensagem
 local function setupCheckboxes(row, storageKey)
     row.check:setChecked(storage.auto_party[storageKey])
     row.check.onClick = function(widget)
@@ -1006,11 +1016,13 @@ local function setupCheckboxes(row, storageKey)
     end
 end
 
+-- Sistema de notificações
 setupCheckboxes(autoPartyUI.alreadInvited, "notifyWhenAlreadyInvitedChecked")
 setupCheckboxes(autoPartyUI.levelNotAllowed, "notifyWhenLevelNotAllowedChecked")
 setupCheckboxes(autoPartyUI.partyIsFull, "notifyWhenPartyFullChecked")
 setupCheckboxes(autoPartyUI.playerBlocked, "notifyWhenPlayerBlockedChecked")
 
+-- Sistema de informações nas mensagens
 setupCheckboxes(autoPartyUI.worldChat, "callMembersInChatChecked")
 setupCheckboxes(autoPartyUI.showMembers, "membersInMessageInfoChecked")
 setupCheckboxes(autoPartyUI.showExp, "experienceInMessageInfoChecked")
@@ -1059,7 +1071,8 @@ infoButton:setColor("green")
 
 -- Disband Party
 local disbandPartyButton = UI.Button("Disband Party", function()
-    if #partyMembers == 0 then
+    if #partyMembers <= 2 then
+        sayChannel(getChannelId("party"), "!party exit")
         return
     end
 
@@ -1069,6 +1082,7 @@ local disbandPartyButton = UI.Button("Disband Party", function()
                 sayChannel(getChannelId("party"), "!party kick," .. name)
                 info("Kicking " .. name .. " from party.")
                 if i == #partyMembers then
+                    sayChannel(getChannelId("party"), "!party exit")
                     partyMembers = {}
                     autoPartyWidget:setOff()
                 end
