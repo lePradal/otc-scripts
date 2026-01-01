@@ -1,12 +1,8 @@
-local MACRO_VERSION = "1.1.1"
+local MACRO_VERSION = "1.2.0"
 print("Autoparty v" .. MACRO_VERSION .. " loaded.")
 -- Last release:
 -- Features:
---  - checkboxes to dynamic leveling
---  - applying cooldowns
---  - notifyng check system
--- Fixes:
---  - Reusing now instead os.time() in local functions
+--  - Manual kick implemented
 
 -- Constants ---------------------------------------------------
 local MACRO_DELAY = 1000 -- in milliseconds
@@ -1065,11 +1061,28 @@ UI.Button("Blocked Players", function()
 end)
 
 -- Info Button
-local infoButton = UI.Button("Info", function()
+local infoButton = UI.Button("Open Party Info", function()
     sayChannel(getChannelId("party"), "!party info")
 end)
 
 infoButton:setColor("green")
+
+-- Manual Kick
+UI.Button("Manual Kick", function()
+    local members = partyMembers
+    if #members <= 1 then return end
+    
+    local menu = g_ui.createWidget('PopupMenu')
+    for _, name in ipairs(members) do
+        if name ~= player:getName() then
+            menu:addOption("Kick " .. name, function()
+                sayChannel(getChannelId("party"), "!party kick," .. name)
+                info(name .. "was kicked.")
+            end)
+        end
+    end
+    menu:display()
+end)
 
 -- Disband Party
 local disbandPartyButton = UI.Button("Disband Party", function()
