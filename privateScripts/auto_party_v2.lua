@@ -1,9 +1,12 @@
-local MACRO_VERSION = "1.1.0"
+local MACRO_VERSION = "1.1.1"
 print("Autoparty v" .. MACRO_VERSION .. " loaded.")
 -- Last release:
+-- Features:
 --  - checkboxes to dynamic leveling
 --  - applying cooldowns
 --  - notifyng check system
+-- Fixes:
+--  - Reusing now instead os.time() in local functions
 
 -- Constants ---------------------------------------------------
 local MACRO_DELAY = 1000 -- in milliseconds
@@ -42,10 +45,11 @@ local maxAllowedLevel = 0
 local partyMembersCount = 0
 local expPerHour = 0
 local currentBonus = 0
-local lastInfoCheck = os.time()
-local lastInactiveCheck = os.time()
-local lastInviteMessageTime = os.time()
-local lastInviteRequestTime = os.time()
+local now = os.time()
+local lastInfoCheck = now
+local lastInactiveCheck = now
+local lastInviteMessageTime = now
+local lastInviteRequestTime = now
 local lastWorldChatMessageTime = 0
 local partyState = "idle" -- "idle", "inactivityExceeded", "processingKicks"
 
@@ -235,7 +239,7 @@ local function kickInactivePlayers(text)
             if i == #pendingKicks then
                 pendingKicks = {}
                 partyState = "idle"
-                lastInactiveCheck = os.time()
+                lastInactiveCheck = now
             end
         end)
     end
@@ -344,7 +348,7 @@ local function sendMessageInWorldChat()
         return
     end
 
-    local IS_IN_WOLRD_CHAT_MESSAGE_COLLDOWN = os.time() - lastWorldChatMessageTime < WORLD_CHAT_INVITE_COOLDOWN
+    local IS_IN_WOLRD_CHAT_MESSAGE_COLLDOWN = now - lastWorldChatMessageTime < WORLD_CHAT_INVITE_COOLDOWN
     if IS_IN_WOLRD_CHAT_MESSAGE_COLLDOWN then
         return
     end
@@ -362,7 +366,7 @@ local function sendMessageInWorldChat()
     end
 
     sayChannel(chat, chatMessage)
-    lastWorldChatMessageTime = os.time()
+    lastWorldChatMessageTime = now
 end
 
 -- Macro -------------------------------------------------------
@@ -373,7 +377,7 @@ UI.Separator()
 
 local autoPartyWidget = macro(MACRO_DELAY, "Auto Party", function()
 
-    local now = os.time()
+    now = os.time()
 
     if not player:isPartyLeader() then
         partyState = "idle"
@@ -464,7 +468,6 @@ onLoginAdvice(function(text)
         updatingLabels()
     end
 
-    local now = os.time()
     lastInfoCheck = now
 
     kickInactivePlayers(text)
@@ -543,17 +546,17 @@ onTalk(function(name, level, mode, text, channelId, pos)
             return
         end
 
-        local IS_IN_GENERAL_COOLDOWN = os.time() - lastInviteRequestTime < GENERAL_COOLDOWN_INVITE_REQUEST
+        local IS_IN_GENERAL_COOLDOWN = now - lastInviteRequestTime < GENERAL_COOLDOWN_INVITE_REQUEST
         if IS_IN_GENERAL_COOLDOWN then
             return
         end
 
-        local IS_INDIVIDUAL_COOLDOWN = lastRequestByPlayer[name] and os.time() - lastRequestByPlayer[name] <
+        local IS_INDIVIDUAL_COOLDOWN = lastRequestByPlayer[name] and now - lastRequestByPlayer[name] <
                                            INDIVIDUAL_COOLDOWN_INVITE_REQUEST
         if IS_INDIVIDUAL_COOLDOWN then
             return
         end
-        lastRequestByPlayer[name] = os.time()
+        lastRequestByPlayer[name] = now
 
         local IS_ALREADY_INVITED = spec:getShield() == SHIELD_ALREADY_INVITED
         if IS_ALREADY_INVITED then
@@ -581,7 +584,7 @@ onTalk(function(name, level, mode, text, channelId, pos)
             return
         end
 
-        lastInviteRequestTime = os.time()
+        lastInviteRequestTime = now
         g_game.partyInvite(spec:getId())
 
         ::continue::
@@ -620,7 +623,6 @@ onCreatureAppear(function(creature)
         return
     end
 
-    local now = os.time()
     if now - lastInviteMessageTime < INVITE_MESSAGE_COOLDOWN then
         return
     end
