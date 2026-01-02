@@ -46,7 +46,10 @@ local privateScriptsFiles = {
   "exeta_loot",
   "hold_position",
   "reload",
-  "auto_party_v2"
+  "auto_party_WIP",
+  "always_be_mounted",
+  "anti_push",
+  "familiar_summon"
 }
 
 for _, folder in ipairs(folders) do
@@ -77,6 +80,4 @@ for _, folder in ipairs(folders) do
 end
 
 setDefaultTab("Main")
-UI.Separator()
-UI.Label("Private Scripts:")
 UI.Separator()
