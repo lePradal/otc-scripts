@@ -1,8 +1,8 @@
-local MACRO_VERSION = "1.2.0"
+local MACRO_VERSION = "1.3.0"
 print("Autoparty v" .. MACRO_VERSION .. " loaded.")
 -- Last release:
 -- Features:
---  - Manual kick implemented
+--  - Queued invites
 
 -- Constants ---------------------------------------------------
 local MACRO_DELAY = 1000 -- in milliseconds
@@ -52,16 +52,15 @@ local lastInfoCheck = now
 local lastInactiveCheck = now
 local lastInviteMessageTime = now
 local lastScheduleInviteTime = now
-local lastWorldChatMessageTime = 0
+local lastWorldChatMessageTime = now
 local lastInviteSent = 0
-local partyState = "idle" -- "idle", "inactivityExceeded", "processingKicks"
+local partyState = "noParty" -- "noParty", "idle", "inactivityExceeded", "processingKicks"
 
 local autoPartyWidget = nil
 local updatingLabels = nil
 local pendingKicks = {}
 local partyMembers = {}
 local pendingInvites = {}
-local inviteQueue = {}
 local lastRequestByPlayer = {}
 local lastQueueNotification = {}
 
@@ -117,6 +116,13 @@ if storage.auto_party.bonusInMessageInfoChecked == nil then
 end
 if storage.auto_party.maxAndMinLevelInMessageInfoChecked == nil then
     storage.auto_party.maxAndMinLevelInMessageInfoChecked = false
+end
+if storage.auto_party.inviteQueue == nil then
+    storage.auto_party.inviteQueue = {}
+end
+
+if storage.auto_party.inviteQueue[0] ~= nil then
+    info(storage.auto_party.inviteQueue[0].name)
 end
 
 -- Local functions ---------------------------------------------
@@ -226,6 +232,41 @@ local function getPendingKicks(text)
     return pendingKicks
 end
 
+local function hasActiveParty()
+    return player:isPartyMember() or player:isPartyLeader()
+end
+
+local function resetPartyState(reason)
+    partyState = "noParty"
+
+    partyMembers = {}
+    partyMembersCount = 0
+
+    lowestLevel = 0
+    highestLevel = 0
+    minLevelToShare = 0
+    maxLevelToShare = 0
+    currentBonus = 0
+    expPerHour = 0
+
+    pendingKicks = {}
+    pendingInvites = {}
+
+    lastInactiveCheck = now
+    lastInfoCheck = now
+
+    if updatingLabels then
+        updatingLabels()
+    end
+end
+
+local function resetPartyAfterDisband(reason)
+    resetPartyState(reason)
+
+    storage.auto_party.inviteQueue = {}
+    lastQueueNotification = {}
+end
+
 local function kickInactivePlayers(text)
     if partyState ~= "inactivityExceeded" then
         return
@@ -234,7 +275,7 @@ local function kickInactivePlayers(text)
     pendingKicks = getPendingKicks(text)
 
     if #pendingKicks == 0 then
-        partyState = "idle"
+        partyState = hasActiveParty() and "idle" or "noParty"
         return
     end
 
@@ -244,7 +285,11 @@ local function kickInactivePlayers(text)
             sayChannel(getChannelId("party"), "!party kick," .. name)
             if i == #pendingKicks then
                 pendingKicks = {}
-                partyState = "idle"
+                if not hasActiveParty() then
+                    resetPartyState("Last member kicked")
+                else
+                    partyState = "idle"
+                end
                 lastInactiveCheck = now
             end
         end)
@@ -348,9 +393,7 @@ local function sendMessageInWorldChat()
         return
     end
 
-    local IS_PARTY_MEMBER = player:isPartyMember()
-    local IS_NOT_PARTY_LEADER = not player:isPartyLeader()
-    if IS_PARTY_MEMBER and IS_NOT_PARTY_LEADER then
+    if hasActiveParty() and not player:isPartyLeader() then
         return
     end
 
@@ -384,7 +427,7 @@ local function isInQueue(queue, name)
 end
 
 local function getQueuePosition(name)
-    for i, item in ipairs(inviteQueue) do
+    for i, item in ipairs(storage.auto_party.inviteQueue) do
         if item.name == name then
             return i
         end
@@ -420,6 +463,7 @@ local function onPartyMemberJoin(playerName)
         return
     end
 
+    lastQueueNotification[playerName] = nil
     pendingInvites[playerName] = nil
 end
 
@@ -428,7 +472,6 @@ local function extractPartyMemberName(message)
         return nil
     end
 
-    -- pega só a primeira linha
     local firstLine = message:match("([^\n]+)")
     if not firstLine then
         return nil
@@ -463,7 +506,7 @@ local function invitePlayer(target)
                     QUEUED_PLAYER_WAITING_COOLDOWN .. " seconds."
             msgToPlayer(target.name, removedFromQueueMessage)
 
-            table.remove(inviteQueue, 1)
+            table.remove(storage.auto_party.inviteQueue, 1)
             lastQueueNotification[target.name] = nil
             return
         end
@@ -494,7 +537,7 @@ local function invitePlayer(target)
 
     local IS_ALREADY_PARTY_MEMBER = spec:isPartyMember() or table.contains(partyMembers, target.name)
     if IS_ALREADY_PARTY_MEMBER then
-        table.remove(inviteQueue, 1)
+        table.remove(storage.auto_party.inviteQueue, 1)
         lastQueueNotification[target.name] = nil
         return
     end
@@ -504,7 +547,7 @@ local function invitePlayer(target)
             local alreadInvitedMessage = "You are already invited! Join the party."
             msgToPlayer(target.name, alreadInvitedMessage)
         end
-        table.remove(inviteQueue, 1)
+        table.remove(storage.auto_party.inviteQueue, 1)
         lastQueueNotification[target.name] = nil
         return
     end
@@ -515,7 +558,7 @@ local function invitePlayer(target)
         -- TODO: conferir msg
         g_game.talkPrivate(5, target.name, "Sorry, your level is no longer within the allowed range (" .. currentMin ..
             "-" .. currentMax .. ").")
-        table.remove(inviteQueue, 1)
+        table.remove(storage.auto_party.inviteQueue, 1)
         lastQueueNotification[target.name] = nil
         return
     end
@@ -531,22 +574,17 @@ local function invitePlayer(target)
     }
 
     lastInviteSent = now
-    info("lastInviteSent: " .. tostring(lastInviteSent) .. " - player: " .. target.name)
 
-    table.remove(inviteQueue, 1)
+    table.remove(storage.auto_party.inviteQueue, 1)
     lastQueueNotification[target.name] = nil
 end
 
 local function scheduleInvite(name, level, text, channelId)
     local currentTime = os.time()
 
-    
-    local IS_PARTY_MEMBER = player:isPartyMember()
-    local IS_NOT_PARTY_LEADER = not player:isPartyLeader()
-    if IS_PARTY_MEMBER and IS_NOT_PARTY_LEADER then
+    if hasActiveParty() and not player:isPartyLeader() then
         return
     end
-    info("aqui")
 
     local IS_YOURSELF = name == player:getName()
     if IS_YOURSELF then
@@ -595,7 +633,7 @@ local function scheduleInvite(name, level, text, channelId)
         return
     end
 
-    local IS_IN_QUEUE = isInQueue(inviteQueue, name)
+    local IS_IN_QUEUE = isInQueue(storage.auto_party.inviteQueue, name)
     if IS_IN_QUEUE then
         return
     end
@@ -605,7 +643,7 @@ local function scheduleInvite(name, level, text, channelId)
         level = level
     }
 
-    table.insert(inviteQueue, data)
+    table.insert(storage.auto_party.inviteQueue, data)
 
     local queuePosition = getQueuePosition(name)
 
@@ -623,45 +661,51 @@ local autoPartyWidget = macro(MACRO_DELAY, "Auto Party", function()
 
     now = os.time()
 
-    if not player:isPartyLeader() then
-        partyState = "idle"
-        partyMembersCount = 0
-        lowestLevel = 0
-        highestLevel = 0
-        minLevelToShare = 0
-        maxLevelToShare = 0
-        return
+    if not hasActiveParty() then
+        if partyState ~= "noParty" then
+            resetPartyState("No active party detected in macro")
+        end
+    else
+        if partyState == "noParty" then
+            partyState = "idle"
+            sayChannel(getChannelId("party"), "!party info")
+
+            if updatingLabels then
+                updatingLabels()
+            end
+        end
+
+        if player:isPartyLeader() and not player:isPartySharedExperienceActive() then
+            g_game.partyShareExperience(true)
+        end
+
     end
 
     sendMessageInWorldChat()
 
-    local PARTY_SHARING_IS_NOT_ENABLED = not player:isPartySharedExperienceActive()
-    if PARTY_SHARING_IS_NOT_ENABLED then
-        g_game.partyShareExperience(true)
+    if #storage.auto_party.inviteQueue > 0 and now - lastInviteSent > BETWEEN_INVITES_COOLDOWN then
+        local target = storage.auto_party.inviteQueue[1]
+        invitePlayer(target)
     end
 
-    if partyState ~= "idle" and partyState ~= "processingKicks" and (now - lastInfoCheck > LOCKED_PARTY_STATE) then
-        partyState = "idle"
-    end
-
+    -- info("partyState: " .. partyState)
     if partyState ~= "idle" then
         return
     end
 
-    if #inviteQueue > 0 and now - lastInviteSent > BETWEEN_INVITES_COOLDOWN then
-        local target = inviteQueue[1]
-        invitePlayer(target)
-    end
 
-    if player:getShield() == SHIELD_MEMBERS_INACTIVE then
+    if hasActiveParty() and
+        (player:getShield() == SHIELD_MEMBERS_INACTIVE or player:getShield() == SHIELD_LEADER_INACTIVE) then
+
         if now - lastInactiveCheck >= MAX_INACTIVE_TIME then
             sayChannel(getChannelId("party"), "!party info")
             partyState = "inactivityExceeded"
-            return
+            lastInactiveCheck = now
         end
     else
         lastInactiveCheck = now
     end
+
 end)
 
 -- Icon --------------------------------------------------------
@@ -696,9 +740,7 @@ onLoginAdvice(function(text)
         return
     end
 
-    local IS_PARTY_MEMBER = player:isPartyMember()
-    local IS_NOT_PARTY_LEADER = not player:isPartyLeader()
-    if IS_PARTY_MEMBER and IS_NOT_PARTY_LEADER then
+    if hasActiveParty() and not player:isPartyLeader() then
         return
     end
 
@@ -745,12 +787,25 @@ onTextMessage(function(mode, text)
 
     if isJoin then
         local name = extractPartyMemberName(text)
-        onPartyMemberJoin(name)
+        if name then
+            onPartyMemberJoin(name)
+        end
     end
 
-    if isLeader or isJoin or isLeft then
+    if isLeft then
+        schedule(300, function()
+            if not hasActiveParty() then
+                resetPartyState("Party ended via onTextMessage")
+            else
+                sayChannel(getChannelId("party"), "!party info")
+            end
+        end)
+    end
+
+    if isLeader or isJoin then
         sayChannel(getChannelId("party"), "!party info")
     end
+
 end)
 
 onTalk(function(name, level, mode, text, channelId, pos)
@@ -768,9 +823,7 @@ onCreatureAppear(function(creature)
         return
     end
 
-    local IS_PARTY_MEMBER = player:isPartyMember()
-    local IS_NOT_PARTY_LEADER = not player:isPartyLeader()
-    if IS_PARTY_MEMBER and IS_NOT_PARTY_LEADER then
+    if hasActiveParty() and not player:isPartyLeader() then
         return
     end
 
@@ -1285,7 +1338,12 @@ end)
 disbandPartyButton:setColor("#dd3333")
 
 -- Start up ----------------------------------------------------
-sayChannel(getChannelId("party"), "!party info")
+if hasActiveParty() then
+    partyState = "idle"
+    sayChannel(getChannelId("party"), "!party info")
+else
+    partyState = "noParty"
+end
 
 minAllowedLevel = getMinAllowedLevel()
 maxAllowedLevel = getMaxAllowedLevel()
