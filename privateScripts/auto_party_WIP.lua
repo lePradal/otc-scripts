@@ -1,15 +1,17 @@
-local MACRO_VERSION = "1.3.0"
+local MACRO_VERSION = "1.3.1"
 print("Autoparty v" .. MACRO_VERSION .. " loaded.")
 -- Last release:
 -- Features:
 --  - Queued invites
+-- Fixes:
+--  - Removed unused constants and variables
+--  - Adding condition in onCreatureAppear event
 
 -- Constants ---------------------------------------------------
 local MACRO_DELAY = 1000 -- in milliseconds
 local MAX_INACTIVE_TIME = 30 -- in seconds
 local KICK_DELAY = 500 -- in milliseconds
-local LOCKED_PARTY_STATE = 15 -- in seconds
-local INVITE_MESSAGE_COOLDOWN = 20 -- in seconds
+local INVITE_MESSAGE_COOLDOWN = 30 -- in seconds
 local WORLD_CHAT_INVITE_COOLDOWN = 40 -- in seconds
 local QUEUE_NOTIFICATION_COOLDOWN = 30 -- in seconds
 local QUEUED_PLAYER_WAITING_COOLDOWN = 20 -- in seconds
@@ -28,6 +30,7 @@ local SHIELD_NON_SHARING_PARTY = 4
 local SHIELD_SHARING = 6
 local SHIELD_LEADER_INACTIVE = 8
 local SHIELD_MEMBERS_INACTIVE = 10
+local SHIELD_ALREADY_IN_ANOTHER_PARTY = 11
 
 -- Advice field indexes ----------------------------------------
 local PLAYERS_COUNT_INDEX = 2
@@ -48,7 +51,6 @@ local partyMembersCount = 0
 local expPerHour = 0
 local currentBonus = 0
 local now = os.time()
-local lastInfoCheck = now
 local lastInactiveCheck = now
 local lastInviteMessageTime = now
 local lastScheduleInviteTime = now
@@ -253,7 +255,6 @@ local function resetPartyState(reason)
     pendingInvites = {}
 
     lastInactiveCheck = now
-    lastInfoCheck = now
 
     if updatingLabels then
         updatingLabels()
@@ -693,7 +694,6 @@ local autoPartyWidget = macro(MACRO_DELAY, "Auto Party", function()
         return
     end
 
-
     if hasActiveParty() and
         (player:getShield() == SHIELD_MEMBERS_INACTIVE or player:getShield() == SHIELD_LEADER_INACTIVE) then
 
@@ -758,8 +758,6 @@ onLoginAdvice(function(text)
     if updatingLabels then
         updatingLabels()
     end
-
-    lastInfoCheck = now
 
     kickInactivePlayers(text)
 end)
@@ -835,7 +833,7 @@ onCreatureAppear(function(creature)
         return
     end
 
-    if creature:getShield() == SHIELD_ALREADY_INVITED then
+    if creature:getShield() == SHIELD_ALREADY_INVITED or creature:getShield() == SHIELD_ALREADY_IN_ANOTHER_PARTY then
         return
     end
 
