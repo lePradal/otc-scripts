@@ -1,12 +1,6 @@
 {
   "invitingPartySentenceSnippets": "invite",
-  "caveBotTasker": {
-    "max": 0,
-    "monster": "",
-    "inProgress": false,
-    "count": 0,
-    "taskName": ""
-  },
+  "bestHeal": 1266,
   "specialDeposit": {
     "height": 380,
     "items": [
@@ -453,7 +447,7 @@
     "x": 33480,
     "z": 13
   },
-  "checkVersion": 1767555627,
+  "checkVersion": 1767589746,
   "maxDistanceToHold": 2,
   "newHealer": {
     "settings": [
@@ -587,7 +581,7 @@
     "castLeader": ""
   },
   "extras": {
-    "rope": 3003,
+    "rope": 9596,
     "pathfinding": true,
     "bless": true,
     "machete": 9596,
@@ -597,24 +591,24 @@
     "holdWgHot": "F6",
     "holdMwall": true,
     "checkPlayer": true,
-    "looting": 10,
+    "looting": 40,
     "suppliesControl": false,
     "useAll": "space",
     "joinBot": false,
-    "lootLast": false,
+    "lootLast": true,
     "holdMwHot": "F5",
     "nextBackpack": true,
-    "shovel": 3457,
+    "shovel": 9596,
     "lootDelay": 200,
     "title": true,
     "autoOpenDoors": true,
     "stake": false,
     "scythe": 9596,
-    "oberon": false,
+    "oberon": true,
     "huntRoutes": 50,
     "antiKick": true,
     "talkDelay": 1000,
-    "reachable": true,
+    "reachable": false,
     "killUnder": 1,
     "reUse": false,
     "height": 360,
@@ -702,7 +696,7 @@
   },
   "settingAutoLoot": {
     "status": {
-      "Prads": 1767555628
+      "Prads": 1767589896
     }
   },
   "caveBot": {
@@ -772,6 +766,44 @@
       "enabled": true
     }
   },
+  "foodItems": [
+    {
+      "id": 3582,
+      "count": 1
+    },
+    {
+      "id": 3577,
+      "count": 1
+    },
+    {
+      "id": 3731,
+      "count": 1
+    },
+    {
+      "id": 3725,
+      "count": 1
+    },
+    {
+      "id": 3607,
+      "count": 1
+    },
+    {
+      "id": 3585,
+      "count": 1
+    },
+    {
+      "id": 3592,
+      "count": 1
+    },
+    {
+      "id": 3600,
+      "count": 1
+    },
+    {
+      "id": 3601,
+      "count": 1
+    }
+  ],
   "pushmax": {
     "pushMaxRuneId": 3188,
     "mwallBlockId": 2128,
@@ -779,38 +811,12 @@
     "enabled": false,
     "pushMaxKey": "PageUp"
   },
-  "auto_party": {
-    "membersInMessageInfoChecked": false,
-    "notifyWhenPlayerBlockedChecked": false,
-    "staticMinLevel": 0,
-    "maxAndMinLevelInMessageInfoChecked": false,
-    "experienceInMessageInfoChecked": false,
-    "notifyWhenAlreadyInvitedChecked": false,
-    "dynamicMaxLeveling": true,
-    "notifyWhenPartyFullChecked": false,
-    "maxMembers": 8,
-    "inviteQueue": [
-
-    ],
-    "staticMaxLevel": 0,
-    "dynamicMinLeveling": true,
-    "callMembersInChatChecked": false,
-    "bonusInMessageInfoChecked": false,
-    "partyBlockedPlayers": [
-
-    ],
-    "huntArea": "",
-    "notifyWhenLevelNotAllowedChecked": false
-  },
-  "_configs": {
-    "targetbot_configs": {
-      "selected": "shooter_noloot",
-      "enabled": false
-    },
-    "cavebot_configs": {
-      "selected": "oramond_north",
-      "enabled": false
-    }
+  "caveBotTasker": {
+    "max": 0,
+    "monster": "",
+    "inProgress": false,
+    "count": 0,
+    "taskName": ""
   },
   "BOTserver": {
     "manaInfo": true,
@@ -860,44 +866,29 @@
 
     ]
   },
-  "foodItems": [
-    {
-      "id": 3582,
-      "count": 1
-    },
-    {
-      "id": 3577,
-      "count": 1
-    },
-    {
-      "id": 3731,
-      "count": 1
-    },
-    {
-      "id": 3725,
-      "count": 1
-    },
-    {
-      "id": 3607,
-      "count": 1
-    },
-    {
-      "id": 3585,
-      "count": 1
-    },
-    {
-      "id": 3592,
-      "count": 1
-    },
-    {
-      "id": 3600,
-      "count": 1
-    },
-    {
-      "id": 3601,
-      "count": 1
-    }
-  ],
+  "auto_party": {
+    "membersInMessageInfoChecked": false,
+    "notifyWhenPlayerBlockedChecked": false,
+    "staticMinLevel": 0,
+    "maxAndMinLevelInMessageInfoChecked": false,
+    "experienceInMessageInfoChecked": false,
+    "notifyWhenAlreadyInvitedChecked": false,
+    "dynamicMaxLeveling": true,
+    "notifyWhenPartyFullChecked": false,
+    "maxMembers": 8,
+    "inviteQueue": [
+
+    ],
+    "staticMaxLevel": 0,
+    "dynamicMinLeveling": true,
+    "callMembersInChatChecked": false,
+    "bonusInMessageInfoChecked": false,
+    "partyBlockedPlayers": [
+
+    ],
+    "huntArea": "",
+    "notifyWhenLevelNotAllowedChecked": false
+  },
   "moneyItems": [
     {
       "id": 3031,
@@ -929,52 +920,148 @@
     ]
   },
   "renameContainers": {
-    "purse": true,
-    "enabled": false,
-    "height": 170,
+    "sort": true,
+    "forceOpen": true,
     "list": [
       {
         "items": [
-          3081,
-          3048
-        ],
-        "value": "Main Backpack",
-        "item": 9601,
-        "min": false,
-        "enabled": true
-      },
-      {
-        "items": [
-          3161,
-          3180
-        ],
-        "value": "Runes",
-        "item": 2866,
-        "min": true,
-        "enabled": true
-      },
-      {
-        "items": [
-          3031,
-          3035,
-          3043
+          {
+            "id": 3031,
+            "count": 1
+          },
+          {
+            "id": 3035,
+            "count": 1
+          },
+          {
+            "id": 3043,
+            "count": 1
+          }
         ],
         "value": "Money",
-        "item": 2871,
+        "enabled": true,
         "min": true,
-        "enabled": true
+        "item": 2871
       },
       {
         "items": [
 
         ],
-        "value": "Purse",
-        "item": 23396,
+        "value": "Loot",
+        "enabled": true,
+        "min": false,
+        "item": 8860
+      },
+      {
+        "items": [
+          {
+            "count": 1,
+            "id": 3098
+          }
+        ],
+        "value": "RoH",
+        "enabled": true,
         "min": true,
-        "enabled": true
+        "item": 2867
+      },
+      {
+        "items": [
+          {
+            "count": 1,
+            "id": 3052
+          }
+        ],
+        "value": "LR",
+        "item": 2865,
+        "enabled": true,
+        "min": true,
+        "openNext": true
+      },
+      {
+        "items": [
+          {
+            "count": 1,
+            "id": 7643
+          },
+          {
+            "count": 1,
+            "id": 23375
+          },
+          {
+            "count": 1,
+            "id": 237
+          },
+          {
+            "count": 1,
+            "id": 7642
+          },
+          {
+            "count": 1,
+            "id": 238
+          }
+        ],
+        "value": "Potion",
+        "enabled": true,
+        "min": false,
+        "item": 14249
+      },
+      {
+        "items": [
+          {
+            "count": 1,
+            "id": 3032
+          },
+          {
+            "count": 1,
+            "id": 9057
+          },
+          {
+            "count": 1,
+            "id": 3028
+          },
+          {
+            "count": 1,
+            "id": 3033
+          },
+          {
+            "count": 1,
+            "id": 3030
+          },
+          {
+            "count": 1,
+            "id": 3029
+          }
+        ],
+        "value": "Valuables",
+        "item": 2866,
+        "enabled": true,
+        "min": true,
+        "openNext": false
+      },
+      {
+        "items": [
+
+        ],
+        "value": "Unasigned",
+        "enabled": true,
+        "min": false,
+        "item": 21411
       }
-    ]
+    ],
+    "purse": false,
+    "enabled": true,
+    "height": 170,
+    "lootBag": false
   },
-  "bestHeal": 1266,
+  "_configs": {
+    "targetbot_configs": {
+      "selected": "shooter_noloot",
+      "enabled": false
+    },
+    "cavebot_configs": {
+      "selected": "gray_island",
+      "enabled": false
+    }
+  },
   "familiarSummonMinMana": 90
 }
