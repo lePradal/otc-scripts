@@ -1,3 +1,4 @@
+setDefaultTab("Tools")
 local MACRO_VERSION = "1.0.2"
 print("Always be mounted v" .. MACRO_VERSION .. " loaded.")
 

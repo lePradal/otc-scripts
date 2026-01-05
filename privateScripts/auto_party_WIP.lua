@@ -1260,6 +1260,12 @@ end
 
 UI.Separator()
 
+-- Info Button
+local infoButton = UI.Button("Open Party Info", function()
+    sayChannel(getChannelId("party"), "!party info")
+end)
+infoButton:setColor("green")
+
 -- Blocked Players List
 UI.Button("Blocked Players", function()
     local currentList = ""
@@ -1286,15 +1292,27 @@ UI.Button("Blocked Players", function()
     end)
 end)
 
--- Info Button
-local infoButton = UI.Button("Open Party Info", function()
-    sayChannel(getChannelId("party"), "!party info")
-end)
+-- Queued Players
+local queuedPlayersButton = UI.Button("Queued Players", function()
+    local members = partyMembers
+    if #members <= 1 then
+        return
+    end
 
-infoButton:setColor("green")
+    local menu = g_ui.createWidget('PopupMenu')
+    for i, data in ipairs(storage.auto_party.inviteQueue) do
+        if data.name ~= player:getName() then
+            menu:addOption("Remove " .. data.name, function()
+                table.remove(storage.auto_party.inviteQueue, i)
+            end)
+        end
+    end
+    menu:display()
+end)
+queuedPlayersButton:setColor("yellow")
 
 -- Manual Kick
-UI.Button("Manual Kick", function()
+local manualKickButton = UI.Button("Manual Kick", function()
     local members = partyMembers
     if #members <= 1 then
         return
@@ -1310,6 +1328,7 @@ UI.Button("Manual Kick", function()
     end
     menu:display()
 end)
+manualKickButton:setColor("yellow")
 
 -- Disband Party
 local disbandPartyButton = UI.Button("Disband Party", function()
@@ -1336,12 +1355,5 @@ end)
 disbandPartyButton:setColor("#dd3333")
 
 -- Start up ----------------------------------------------------
-if hasActiveParty() then
-    partyState = "idle"
-    sayChannel(getChannelId("party"), "!party info")
-else
-    partyState = "noParty"
-end
-
 minAllowedLevel = getMinAllowedLevel()
 maxAllowedLevel = getMaxAllowedLevel()

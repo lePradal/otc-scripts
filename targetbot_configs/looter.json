@@ -20,7 +20,7 @@
     {
       "lureDelay": 250,
       "lureMin": 1,
-      "maxDistance": 7,
+      "maxDistance": 5,
       "anchorRange": 3,
       "lureCount": 1,
       "avoidAttacks": false,

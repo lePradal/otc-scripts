@@ -6,16 +6,16 @@
     "ignoreInPz": true,
     "bleedCost": 45,
     "cureCurse": false,
-    "holdHaste": false,
+    "holdHaste": true,
     "curePosion": false,
     "hasteSpell": "utani hur",
-    "cureParalyse": false,
-    "stopHaste": false,
+    "uturaType": "Utura Gran",
+    "burnCost": 30,
     "cureBleed": false,
     "holdUtura": true,
     "paralyseSpell": "utani hur",
-    "utanaCost": 440,
-    "uturaType": "Utura Gran",
+    "hasteCost": 40,
+    "cureParalyse": false,
     "poisonCost": 20,
     "utamoCost": 40,
     "enabled": true,
@@ -23,165 +23,165 @@
     "cureElectrify": false,
     "holdUtamo": false,
     "paralyseCost": 40,
-    "hasteCost": 40,
+    "utanaCost": 440,
     "holdUtana": false,
-    "burnCost": 30
+    "stopHaste": false
   },
   "currentHealBotProfile": 1,
   "healbot": [
     {
       "MessageDelay": false,
-      "Conditions": true,
-      "itemTable": [
-        {
-          "enabled": true,
-          "index": 5,
-          "origin": "HP%",
-          "item": 7642,
-          "value": 60,
-          "sign": "<"
-        },
-        {
-          "sign": "<",
-          "origin": "HP%",
-          "value": 70,
-          "item": 236,
-          "index": 1,
-          "enabled": true
-        },
-        {
-          "enabled": true,
-          "value": 50,
-          "index": 4,
-          "item": 238,
-          "origin": "MP%",
-          "sign": "<"
-        },
-        {
-          "enabled": false,
-          "index": 2,
-          "origin": "MP%",
-          "item": 7642,
-          "value": 40,
-          "sign": "<"
-        },
-        {
-          "sign": "<",
-          "value": 65,
-          "index": 3,
-          "item": 237,
-          "origin": "MP%",
-          "enabled": true
-        }
-      ],
-      "Delay": true,
       "Visible": false,
+      "Interval": true,
+      "Delay": true,
+      "Conditions": true,
       "Cooldown": true,
       "spellTable": [
         {
           "enabled": true,
-          "value": 65,
-          "origin": "HP%",
-          "sign": "<",
-          "spell": "exura gran san",
           "index": 1,
+          "origin": "HP%",
+          "spell": "exura gran san",
+          "sign": "<",
+          "value": 65,
           "cost": 210
         },
         {
-          "enabled": false,
-          "value": 80,
-          "origin": "HP%",
-          "sign": "<",
-          "spell": "exura san",
+          "enabled": true,
           "index": 2,
+          "origin": "HP%",
+          "spell": "exura san",
+          "sign": "<",
+          "value": 80,
           "cost": 160
         },
         {
           "enabled": false,
-          "value": 90,
-          "origin": "HP%",
-          "sign": "<",
-          "spell": "exura",
           "index": 3,
+          "origin": "HP%",
+          "spell": "exura",
+          "sign": "<",
+          "value": 90,
           "cost": 20
         },
         {
           "enabled": true,
-          "value": 98,
-          "origin": "MP%",
-          "sign": ">",
-          "spell": "exura san",
           "index": 4,
+          "origin": "MP%",
+          "spell": "exura san",
+          "sign": ">",
+          "value": 98,
           "cost": 160
         }
       ],
       "enabled": true,
       "name": "Paladin",
-      "Interval": true
+      "itemTable": [
+        {
+          "sign": "<",
+          "value": 60,
+          "index": 5,
+          "item": 7642,
+          "origin": "HP%",
+          "enabled": true
+        },
+        {
+          "enabled": true,
+          "index": 1,
+          "origin": "HP%",
+          "item": 236,
+          "value": 70,
+          "sign": "<"
+        },
+        {
+          "sign": "<",
+          "value": 40,
+          "index": 2,
+          "item": 7642,
+          "origin": "MP%",
+          "enabled": true
+        },
+        {
+          "sign": "<",
+          "origin": "MP%",
+          "value": 50,
+          "item": 238,
+          "index": 4,
+          "enabled": true
+        },
+        {
+          "enabled": true,
+          "origin": "MP%",
+          "value": 65,
+          "item": 237,
+          "index": 3,
+          "sign": "<"
+        }
+      ]
     },
     {
       "MessageDelay": false,
-      "Conditions": true,
-      "itemTable": [
-
-      ],
-      "Delay": true,
       "Visible": true,
+      "Interval": true,
+      "Delay": true,
+      "Conditions": true,
       "Cooldown": true,
       "spellTable": [
 
       ],
       "enabled": false,
       "name": "Profile #2",
-      "Interval": true
+      "itemTable": [
+
+      ]
     },
     {
       "MessageDelay": false,
-      "Conditions": true,
-      "itemTable": [
-
-      ],
-      "Delay": true,
       "Visible": true,
+      "Interval": true,
+      "Delay": true,
+      "Conditions": true,
       "Cooldown": true,
       "spellTable": [
 
       ],
       "enabled": false,
       "name": "Profile #3",
-      "Interval": true
+      "itemTable": [
+
+      ]
     },
     {
       "MessageDelay": false,
-      "Conditions": true,
-      "itemTable": [
-
-      ],
-      "Delay": true,
       "Visible": true,
+      "Interval": true,
+      "Delay": true,
+      "Conditions": true,
       "Cooldown": true,
       "spellTable": [
 
       ],
       "enabled": false,
       "name": "Profile #4",
-      "Interval": true
+      "itemTable": [
+
+      ]
     },
     {
       "MessageDelay": false,
-      "Conditions": true,
-      "itemTable": [
-
-      ],
-      "Delay": true,
       "Visible": true,
+      "Interval": true,
+      "Delay": true,
+      "Conditions": true,
       "Cooldown": true,
       "spellTable": [
 
       ],
       "enabled": false,
       "name": "Profile #5",
-      "Interval": true
+      "itemTable": [
+
+      ]
     }
   ]
 }

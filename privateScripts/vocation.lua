@@ -1,16 +1,29 @@
 local vocations = {
-    [0] = { fullname= "No Vocation", name= "None", abbreviation= "N", familiarSummonSpell= nil },
-    [1] = { fullname= "Knight", name= "Knight", abbreviation= "K", familiarSummonSpell= "eq" },
-    [2] = { fullname= "Paladin", name= "Paladin", abbreviation= "P", familiarSummonSpell= "sac" },
-    [3] = { fullname= "Sorcerer", name= "Sorcerer", abbreviation= "S", familiarSummonSpell= "ven" },
-    [4] = { fullname= "Druid", name= "Druid", abbreviation= "D", familiarSummonSpell= "dru" },
-    [5] = { fullname= "Monk", name= "Monk", abbreviation= "M", familiarSummonSpell= "tio"  },
-    [6] = { fullname= "Elite Knight", name= "E. Knight", abbreviation= "EK", familiarSummonSpell= "eq" },
-    [7] = { fullname= "Royal Paladin", name= "R. Paladin", abbreviation= "RP", familiarSummonSpell= "sac" },
-    [8] = { fullname= "Master Sorcerer", name= "M. Sorcerer", abbreviation= "MS", familiarSummonSpell= "ven" },
-    [9] = { fullname= "Elder Druid", name= "E. Druid", abbreviation= "ED", familiarSummonSpell= "dru" },
-    [10] = { fullname= "Exalted Monk", name= "E. Monk", abbreviation= "EM", familiarSummonSpell= "tio" }
+    [0] = { base= "none", fullname= "No Vocation", name= "None", abbreviation= "N" },
+    [1] = { base= "knight", fullname= "Knight", name= "Knight", abbreviation= "K" },
+    [2] = { base= "paladin", fullname= "Paladin", name= "Paladin", abbreviation= "P" },
+    [3] = { base= "sorcerer", fullname= "Sorcerer", name= "Sorcerer", abbreviation= "S" },
+    [4] = { base= "druid", fullname= "Druid", name= "Druid", abbreviation= "D" },
+    [5] = { base= "monk", fullname= "Monk", name= "Monk", abbreviation= "M" },
+    [6] = { base= "knight", fullname= "Elite Knight", name= "E. Knight", abbreviation= "EK" },
+    [7] = { base= "paladin", fullname= "Royal Paladin", name= "R. Paladin", abbreviation= "RP" },
+    [8] = { base= "sorcerer", fullname= "Master Sorcerer", name= "M. Sorcerer", abbreviation= "MS" },
+    [9] = { base= "druid", fullname= "Elder Druid", name= "E. Druid", abbreviation= "ED" },
+    [10] = { base= "monk", fullname= "Exalted Monk", name= "E. Monk", abbreviation= "EM" }
 }
+
+local spellsByBase = {
+    ["knight"]      = { familiar = "utevo gran res eq",  haste = "utani hur"      },
+    ["paladin"]     = { familiar = "utevo gran res sac", haste = "utani hur"      },
+    ["sorcerer"]    = { familiar = "utevo gran res ven", haste = "utani gran hur" },
+    ["druid"]       = { familiar = "utevo gran res dru", haste = "utani gran hur" },
+    ["monk"]        = { familiar = "utevo gran res tio", haste = "utani gran hur" }
+}
+
+function getVocationBase(vocationId)
+    local voc = vocations[vocationId]
+    return voc and voc.base or "none"
+end
 
 function getVocation(vocationId)
     return vocations[vocationId] or nil
@@ -28,6 +41,22 @@ function getVocationAbbreviation(vocationId)
     return vocations[vocationId].abbreviation or nil
 end
 
+function getVocationSpells(vocationId)
+    local id = vocationId
+    local base = getVocationBase(id)
+    
+    return spellsByBase[base] or spellsByBase["none"]
+end
+
+function getSpellByType(spellType, vocationId)
+    local spells = getVocationSpells(vocationId)
+    return spells[spellType] or nil
+end
+
 function getVocationFamiliarSummonSpell(vocationId)
-    return vocations[vocationId].familiarSummonSpell or nil
+    return getSpellByType("familiar", vocationId)
+end
+
+function getVocationHasteSpell(vocationId)
+    return getSpellByType("haste", vocationId)
 end

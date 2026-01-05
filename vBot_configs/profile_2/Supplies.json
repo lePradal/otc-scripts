@@ -2,9 +2,23 @@
   "supplies": {
     "currentProfile": "Default",
     "Default": {
-      "items": [
-
-      ]
+      "items": {
+        "3725": {
+          "max": 0,
+          "min": 5,
+          "avg": 0
+        },
+        "7643": {
+          "max": 300,
+          "min": 30,
+          "avg": 200
+        },
+        "237": {
+          "max": 400,
+          "min": 30,
+          "avg": 200
+        }
+      }
     }
   }
 }

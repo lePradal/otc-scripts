@@ -1,145 +1,11 @@
 {
-  "BotServerChannel": "8541153135291",
-  "combobot": {
-    "attackSpellEnabled": false,
-    "attackLeaderTargetEnabled": true,
-    "attackItemEnabled": true,
-    "shootLeader": "John Galt",
-    "onCastEnabled": false,
-    "followLeaderEnabled": true,
-    "serverEnabled": true,
-    "commandsEnabled": false,
-    "onSayEnabled": false,
-    "attack": "",
-    "enabled": true,
-    "spell": "",
-    "onShootEnabled": true,
-    "attackItemToggle": false,
-    "serverTriggers": true,
-    "item": 3155,
-    "sayPhrase": "",
-    "serverLeaderTarget": true,
-    "serverLeader": "John Galt",
-    "sayLeader": "John Galt",
-    "follow": "LEADER",
-    "castLeader": ""
-  },
-  "extras": {
-    "rope": 9596,
-    "pathfinding": true,
-    "timers": true,
-    "machete": 9596,
-    "separatePm": true,
-    "reUse": false,
-    "gotoMaxDistance": 30,
-    "killUnder": 1,
-    "holdMwall": true,
-    "checkPlayer": true,
-    "looting": 40,
-    "suppliesControl": false,
-    "useAll": "space",
-    "joinBot": false,
-    "lootLast": true,
-    "holdMwHot": "F5",
-    "reachable": false,
-    "shovel": 9596,
-    "lootDelay": 200,
-    "talkDelay": 1000,
-    "autoOpenDoors": true,
-    "holdWgHot": "F6",
-    "nextBackpack": true,
-    "oberon": true,
-    "huntRoutes": 50,
-    "antiKick": true,
-    "title": true,
-    "scythe": 9596,
-    "stake": false,
-    "highlightTarget": true,
-    "height": 360,
-    "bless": true
-  },
-  "caveBotTasker": {
-    "max": 0,
-    "monster": "",
-    "inProgress": false,
-    "count": 0,
-    "taskName": ""
-  },
-  "autoEquip": [
-    {
-      "item1": 3052,
-      "title": "Auto Equip",
-      "item2": 3089,
-      "on": false,
-      "slot": 9
-    },
-    {
-      "item1": 3098,
-      "title": "Auto Equip",
-      "item2": 3100,
-      "on": false,
-      "slot": 9
-    },
-    {
-      "item1": 0,
-      "title": "Auto Equip",
-      "item2": 0,
-      "on": false,
-      "slot": 0
-    },
-    {
-      "item1": 0,
-      "title": "Auto Equip",
-      "item2": 0,
-      "on": false,
-      "slot": 0
-    },
-    {
-      "item1": 0,
-      "title": "Auto Equip",
-      "item2": 0,
-      "on": false,
-      "slot": 0
-    }
-  ],
-  "dropper": {
-    "enabled": false,
-    "trashItems": [
-      {
-        "count": 1,
-        "id": 283
-      },
-      {
-        "count": 1,
-        "id": 284
-      },
-      {
-        "count": 1,
-        "id": 285
-      }
-    ],
-    "useItems": [
-      {
-        "count": 1,
-        "id": 21203
-      },
-      {
-        "count": 1,
-        "id": 14758
-      }
-    ],
-    "capItems": [
-      {
-        "count": 1,
-        "id": 21175
-      }
+  "invitingPartySentenceSnippets": "invite",
+  "bestHeal": 1425,
+  "specialDeposit": {
+    "height": 380,
+    "items": [
+
     ]
-  },
-  "caveBot": {
-    "backOffline": false,
-    "backTrainers": false,
-    "forceRefill": false,
-    "backStop": false
   },
   "analyzers": {
     "lootChannel": true,
@@ -152,389 +18,294 @@
     "trackedBoss": [
 
     ],
+    "rarityFrames": true,
     "outfits": {
-      "Insectoid Worker": {
+      "Deepling Spellsinger": {
         "addons": 0,
         "feet": 0,
-        "type": 403,
-        "body": 0,
         "legs": 0,
-        "auxType": 0,
+        "body": 0,
         "mount": 0,
+        "auxType": 0,
+        "type": 443,
         "head": 0
       },
-      "Deepling Scout": {
+      "Hive Pore": {
         "addons": 0,
         "feet": 0,
-        "type": 413,
-        "body": 0,
         "legs": 0,
-        "auxType": 0,
-        "mount": 0,
-        "head": 0
-      },
-      "Crawler": {
-        "addons": 0,
-        "feet": 0,
-        "type": 456,
         "body": 0,
-        "legs": 0,
-        "auxType": 0,
         "mount": 0,
-        "head": 0
-      },
-      "Kollos": {
-        "addons": 0,
-        "feet": 0,
-        "type": 458,
-        "body": 0,
-        "legs": 0,
-        "auxType": 0,
-        "mount": 0,
-        "head": 0
-      },
-      "Deepling Warrior": {
-        "addons": 0,
-        "feet": 0,
-        "type": 441,
-        "body": 0,
-        "legs": 0,
-        "auxType": 0,
-        "mount": 0,
-        "head": 0
-      },
-      "Spidris": {
-        "addons": 0,
-        "feet": 0,
-        "type": 457,
-        "body": 0,
-        "legs": 0,
-        "auxType": 0,
-        "mount": 0,
+        "auxType": 14064,
+        "type": 128,
         "head": 0
       },
       "Waspoid": {
         "addons": 0,
         "feet": 0,
+        "mount": 0,
+        "auxType": 0,
         "type": 462,
         "body": 0,
         "legs": 0,
-        "auxType": 0,
-        "mount": 0,
         "head": 0
       },
-      "Lesser Swarmer": {
+      "Deepling Warrior": {
         "addons": 0,
         "feet": 0,
-        "type": 460,
+        "mount": 0,
+        "auxType": 0,
+        "type": 441,
         "body": 0,
         "legs": 0,
-        "auxType": 0,
-        "mount": 0,
         "head": 0
       },
-      "Lady Bug": {
+      "Shucky Assassin": {
         "addons": 0,
         "feet": 0,
-        "type": 448,
-        "body": 0,
-        "legs": 0,
+        "type": 129,
         "auxType": 0,
-        "mount": 0,
-        "head": 0
-      },
-      "Spitter": {
-        "addons": 0,
-        "feet": 0,
-        "type": 461,
-        "body": 0,
         "legs": 0,
-        "auxType": 0,
+        "body": 0,
         "mount": 0,
         "head": 0
       },
       "Deepling Guard": {
         "addons": 0,
         "feet": 0,
+        "mount": 0,
+        "auxType": 0,
         "type": 442,
         "body": 0,
         "legs": 0,
-        "auxType": 0,
-        "mount": 0,
         "head": 0
       },
       "Trainer": {
         "addons": 0,
         "feet": 0,
+        "legs": 0,
+        "body": 0,
         "mount": 0,
         "auxType": 0,
         "type": 1078,
+        "head": 0
+      },
+      "Insectoid Worker": {
+        "addons": 0,
+        "feet": 0,
+        "mount": 0,
+        "auxType": 0,
+        "type": 403,
         "body": 0,
         "legs": 0,
+        "head": 0
+      },
+      "Deepling Scout": {
+        "addons": 0,
+        "feet": 0,
+        "mount": 0,
+        "auxType": 0,
+        "type": 413,
+        "body": 0,
+        "legs": 0,
+        "head": 0
+      },
+      "Crawler": {
+        "addons": 0,
+        "feet": 0,
+        "mount": 0,
+        "auxType": 0,
+        "type": 456,
+        "body": 0,
+        "legs": 0,
+        "head": 0
+      },
+      "Lady Bug": {
+        "addons": 0,
+        "feet": 0,
+        "mount": 0,
+        "auxType": 0,
+        "type": 448,
+        "body": 0,
+        "legs": 0,
+        "head": 0
+      },
+      "Fire Elemental": {
+        "addons": 0,
+        "feet": 0,
+        "type": 49,
+        "auxType": 0,
+        "legs": 0,
+        "body": 0,
+        "mount": 0,
+        "head": 0
+      },
+      "Kollos": {
+        "addons": 0,
+        "feet": 0,
+        "mount": 0,
+        "auxType": 0,
+        "type": 458,
+        "body": 0,
+        "legs": 0,
+        "head": 0
+      },
+      "Fish": {
+        "addons": 0,
+        "feet": 0,
+        "mount": 0,
+        "body": 0,
+        "type": 455,
+        "auxType": 0,
+        "legs": 0,
+        "head": 0
+      },
+      "Emberwing": {
+        "addons": 0,
+        "feet": 0,
+        "type": 992,
+        "auxType": 0,
+        "legs": 0,
+        "body": 0,
+        "mount": 0,
         "head": 0
       },
       "Swarmer": {
         "addons": 0,
         "feet": 0,
+        "mount": 0,
+        "auxType": 0,
         "type": 460,
         "body": 0,
         "legs": 0,
+        "head": 0
+      },
+      "Lesser Swarmer": {
+        "addons": 0,
+        "feet": 0,
+        "mount": 0,
         "auxType": 0,
+        "type": 460,
+        "body": 0,
+        "legs": 0,
+        "head": 0
+      },
+      "Shark": {
+        "addons": 0,
+        "feet": 0,
+        "type": 453,
+        "auxType": 0,
+        "legs": 0,
+        "body": 0,
         "mount": 0,
         "head": 0
+      },
+      "Spitter": {
+        "addons": 0,
+        "feet": 0,
+        "mount": 0,
+        "auxType": 0,
+        "type": 461,
+        "body": 0,
+        "legs": 0,
+        "head": 0
+      },
+      "The Marin": {
+        "addons": 0,
+        "feet": 85,
+        "type": 138,
+        "auxType": 0,
+        "legs": 85,
+        "body": 114,
+        "mount": 0,
+        "head": 85
+      },
+      "Spidris": {
+        "addons": 0,
+        "feet": 0,
+        "mount": 0,
+        "auxType": 0,
+        "type": 457,
+        "body": 0,
+        "legs": 0,
+        "head": 0
+      },
+      "Darcy": {
+        "addons": 0,
+        "feet": 113,
+        "mount": 0,
+        "body": 0,
+        "type": 155,
+        "auxType": 0,
+        "legs": 114,
+        "head": 115
       }
-    },
-    "rarityFrames": true
-  },
-  "cavebotSell": [
-    {
-      "count": 1,
-      "id": 23544
-    },
-    {
-      "count": 1,
-      "id": 3081
-    }
-  ],
-  "bestHit": 844,
-  "bestHeal": 1088,
-  "EquipperPanel": {
-    "bosses": [
-
-    ],
-    "enabled": false,
-    "rules": [
-
-    ]
-  },
-  "_macros": {
-    "": false,
-    "Exeta Loot": false,
-    "Auto Party": false,
-    "Hold Position": false,
-    "Eat Food": true
-  },
-  "renameContainers": {
-    "purse": true,
-    "enabled": false,
-    "height": 170,
-    "list": [
-      {
-        "items": [
-          3081,
-          3048
-        ],
-        "value": "Main Backpack",
-        "item": 9601,
-        "min": false,
-        "enabled": true
-      },
-      {
-        "items": [
-          3161,
-          3180
-        ],
-        "value": "Runes",
-        "item": 2866,
-        "min": true,
-        "enabled": true
-      },
-      {
-        "items": [
-          3031,
-          3035,
-          3043
-        ],
-        "value": "Money",
-        "item": 2871,
-        "min": true,
-        "enabled": true
-      },
-      {
-        "items": [
-
-        ],
-        "value": "Purse",
-        "item": 23396,
-        "min": true,
-        "enabled": true
-      }
-    ]
-  },
-  "_configs": {
-    "cavebot_configs": {
-      "enabled": false,
-      "selected": "oramond_north"
-    },
-    "targetbot_configs": {
-      "enabled": true,
-      "selected": "shooter_noloot"
     }
   },
-  "checkVersion": 1767217612,
-  "foodItems": [
-    {
-      "id": 3582,
-      "count": 1
-    },
-    {
-      "id": 3577,
-      "count": 1
-    },
-    {
-      "id": 3731,
-      "count": 1
-    },
-    {
-      "id": 3585,
-      "count": 1
-    },
-    {
-      "id": 3592,
-      "count": 1
-    },
-    {
-      "id": 3600,
-      "count": 1
-    },
-    {
-      "id": 3601,
-      "count": 1
-    },
-    {
-      "id": 3725,
-      "count": 1
-    },
-    {
-      "id": 3607,
-      "count": 1
-    }
-  ],
-  "pushmax": {
-    "pushMaxRuneId": 3188,
-    "mwallBlockId": 2128,
-    "pushDelay": 1060,
-    "enabled": false,
-    "pushMaxKey": "PageUp"
+  "holdPosition": {
+    "y": 31281,
+    "x": 33497,
+    "z": 13
   },
-  "maxDistanceToHold": 5,
-  "BOTserver": {
-    "manaInfo": true,
-    "mwallInfo": true,
-    "mwalls": [
-
-    ],
-    "outfit": false,
-    "broadcasts": true,
-    "vocation": true,
-    "enabled": true
-  },
-  "alarms": {
-    "privateMsg": [
-
-    ],
-    "customMessage": {
-      "value": ""
-    },
-    "flashClient": [
-
-    ],
-    "lowMana": {
-      "value": 20
-    },
-    "creatureDetected": [
-
-    ],
-    "damageTaken": [
-
-    ],
-    "playerAttack": [
-
-    ],
-    "ignoreFriends": [
-
-    ],
-    "defaultMsg": [
-
-    ],
-    "playerDetected": [
-
-    ],
-    "lowHealth": {
-      "value": 20
-    },
-    "creatureName": {
-      "value": ""
-    }
-  },
-  "_icons": {
-    "targetBotIcon": {
-      "y": 0.25,
-      "x": 0.01,
-      "enabled": true
-    },
-    "reloadIcon": {
-      "y": 0.85,
-      "x": 0.01
-    },
-    "Auto Party": {
-      "y": 0.05,
-      "x": 0.01,
-      "enabled": false
-    },
-    "holdPositionIcon": {
-      "y": 0.65,
-      "x": 0.01,
-      "enabled": false
-    },
-    "caveBotIcon": {
-      "y": 0.05,
-      "x": 0.01,
-      "enabled": false
-    },
-    "exetaLootIcon": {
-      "y": 0.45,
-      "x": 0.01,
-      "enabled": false
-    }
-  },
-  "moneyItems": [
-    {
-      "count": 1,
-      "id": 3031
-    },
-    {
-      "count": 1,
-      "id": 3035
-    }
-  ],
-  "playerList": {
-    "enemyList": [
-
-    ],
-    "outfits": false,
-    "groupMembers": true,
-    "friendList": [
-
-    ],
-    "highlight": false,
-    "marks": false,
-    "blackList": [
-
-    ]
-  },
+  "checkVersion": 1767556334,
+  "maxDistanceToHold": 6,
   "newHealer": {
-    "vocations": [
+    "settings": [
+      {
+        "type": "HealItem",
+        "value": 268,
+        "text": "Mana Item "
+      },
+      {
+        "type": "HealScroll",
+        "value": 6,
+        "text": "Item Range: "
+      },
+      {
+        "type": "HealItem",
+        "value": 3160,
+        "text": "Health Item "
+      },
+      {
+        "type": "HealScroll",
+        "value": 2,
+        "text": "Mas Res Players: "
+      },
+      {
+        "type": "HealScroll",
+        "value": 80,
+        "text": "Heal Friend at: "
+      },
+      {
+        "type": "HealScroll",
+        "value": 80,
+        "text": "Use Gran Sio at: "
+      },
+      {
+        "type": "HealScroll",
+        "value": 80,
+        "text": "Min Player HP%: "
+      },
+      {
+        "type": "HealScroll",
+        "value": 50,
+        "text": "Min Player MP%: "
+      }
+    ],
+    "groups": [
+
+    ],
+    "customPlayers": [
 
     ],
     "conditions": {
-      "sorcerers": false,
+      "party": true,
       "knights": true,
       "friends": false,
       "botserver": false,
       "paladins": true,
-      "party": true,
       "druids": false,
+      "sorcerers": false,
       "guild": false
     },
     "enabled": false,
@@ -570,84 +341,537 @@
         "mana": true
       }
     ],
-    "customPlayers": [
+    "vocations": [
 
-    ],
-    "groups": [
-
-    ],
-    "settings": [
-      {
-        "type": "HealItem",
-        "text": "Mana Item ",
-        "value": 268
-      },
-      {
-        "type": "HealScroll",
-        "text": "Item Range: ",
-        "value": 6
-      },
-      {
-        "type": "HealItem",
-        "text": "Health Item ",
-        "value": 3160
-      },
-      {
-        "type": "HealScroll",
-        "text": "Mas Res Players: ",
-        "value": 2
-      },
-      {
-        "type": "HealScroll",
-        "text": "Heal Friend at: ",
-        "value": 80
-      },
-      {
-        "type": "HealScroll",
-        "text": "Use Gran Sio at: ",
-        "value": 80
-      },
-      {
-        "type": "HealScroll",
-        "text": "Min Player HP%: ",
-        "value": 80
-      },
-      {
-        "type": "HealScroll",
-        "text": "Min Player MP%: ",
-        "value": 50
-      }
     ]
   },
   "autoTradeMessage": "I'm using OTClientV8!",
-  "specialDeposit": {
-    "height": 380,
-    "items": [
+  "antiPushItens": [
+    {
+      "count": 1,
+      "id": 3031
+    },
+    {
+      "count": 1,
+      "id": 3035
+    }
+  ],
+  "BotServerChannel": "8541153135291",
+  "combobot": {
+    "attackSpellEnabled": false,
+    "attackLeaderTargetEnabled": true,
+    "attackItemEnabled": true,
+    "onShootEnabled": true,
+    "item": 3155,
+    "followLeaderEnabled": true,
+    "serverTriggers": true,
+    "commandsEnabled": false,
+    "attack": "",
+    "onSayEnabled": false,
+    "sayLeader": "John Galt",
+    "spell": "",
+    "shootLeader": "John Galt",
+    "attackItemToggle": false,
+    "serverLeaderTarget": true,
+    "serverEnabled": true,
+    "sayPhrase": "",
+    "onCastEnabled": false,
+    "serverLeader": "John Galt",
+    "enabled": false,
+    "follow": "LEADER",
+    "castLeader": ""
+  },
+  "extras": {
+    "rope": 9596,
+    "pathfinding": false,
+    "bless": true,
+    "machete": 9596,
+    "separatePm": true,
+    "highlightTarget": true,
+    "gotoMaxDistance": 30,
+    "stake": false,
+    "holdMwall": true,
+    "checkPlayer": true,
+    "looting": 40,
+    "suppliesControl": false,
+    "useAll": "space",
+    "joinBot": false,
+    "lootLast": true,
+    "holdMwHot": "F5",
+    "scythe": 9596,
+    "shovel": 9596,
+    "reachable": false,
+    "title": true,
+    "autoOpenDoors": true,
+    "holdWgHot": "F6",
+    "nextBackpack": true,
+    "huntRoutes": 50,
+    "oberon": true,
+    "antiKick": true,
+    "talkDelay": 1000,
+    "lootDelay": 200,
+    "killUnder": 1,
+    "reUse": false,
+    "height": 360,
+    "timers": true
+  },
+  "_macros": {
+    "": false,
+    "Cast Food": true,
+    "Hold Position": false,
+    "Auto Party": false,
+    "Auto Ask Party": true,
+    "Eat Food": true,
+    "Exeta Loot": true,
+    "Exchange money": true,
+    "Always be mounted": true,
+    "Auto Join": false,
+    "Auto Join Party": true,
+    "Familiar Summon": true
+  },
+  "autoEquip": [
+    {
+      "item1": 3052,
+      "title": "Auto Equip",
+      "item2": 3089,
+      "on": true,
+      "slot": 9
+    },
+    {
+      "item1": 3098,
+      "title": "Auto Equip",
+      "item2": 3100,
+      "on": false,
+      "slot": 9
+    },
+    {
+      "item1": 0,
+      "title": "Auto Equip",
+      "item2": 0,
+      "on": false,
+      "slot": 0
+    },
+    {
+      "item1": 0,
+      "title": "Auto Equip",
+      "item2": 0,
+      "on": false,
+      "slot": 0
+    },
+    {
+      "item1": 0,
+      "title": "Auto Equip",
+      "item2": 0,
+      "on": false,
+      "slot": 0
+    }
+  ],
+  "dropper": {
+    "enabled": false,
+    "trashItems": [
+      {
+        "id": 283,
+        "count": 1
+      },
+      {
+        "id": 284,
+        "count": 1
+      },
+      {
+        "id": 285,
+        "count": 1
+      }
+    ],
+    "useItems": [
+      {
+        "id": 21203,
+        "count": 1
+      },
+      {
+        "id": 14758,
+        "count": 1
+      }
+    ],
+    "capItems": [
+      {
+        "id": 21175,
+        "count": 1
+      }
+    ]
+  },
+  "settingAutoLoot": {
+    "status": {
+      "Atlas Shrugged": 1767556336
+    }
+  },
+  "caveBot": {
+    "backOffline": false,
+    "backTrainers": false,
+    "forceRefill": false,
+    "backStop": false
+  },
+  "cavebotSell": [
+    {
+      "id": 23544,
+      "count": 1
+    },
+    {
+      "id": 3081,
+      "count": 1
+    }
+  ],
+  "bestHit": 910,
+  "EquipperPanel": {
+    "enabled": false,
+    "bosses": [
+
+    ],
+    "rules": [
 
     ]
+  },
+  "_configs": {
+    "targetbot_configs": {
+      "selected": "looter",
+      "enabled": true
+    },
+    "cavebot_configs": {
+      "selected": "insects",
+      "enabled": false
+    }
+  },
+  "_icons": {
+    "targetBotIcon": {
+      "y": 0.25,
+      "x": 0.01,
+      "enabled": false
+    },
+    "reloadIcon": {
+      "y": 0.85,
+      "x": 0.01
+    },
+    "alwaysBeMountedIcon": {
+      "y": 0.05,
+      "x": 0.01,
+      "enabled": true
+    },
+    "familiarSummonIcon": {
+      "y": 0.05,
+      "x": 0.01,
+      "enabled": true
+    },
+    "Auto Party": {
+      "y": 0.05,
+      "x": 0.01,
+      "enabled": false
+    },
+    "exetaLootIcon": {
+      "y": 0.45,
+      "x": 0.01,
+      "enabled": true
+    },
+    "caveBotIcon": {
+      "y": 0.05,
+      "x": 0.01,
+      "enabled": true
+    },
+    "holdPositionIcon": {
+      "y": 0.65,
+      "x": 0.01,
+      "enabled": false
+    }
+  },
+  "BOTserver": {
+    "manaInfo": true,
+    "mwallInfo": true,
+    "mwalls": [
+
+    ],
+    "outfit": false,
+    "broadcasts": true,
+    "enabled": false,
+    "vocation": true
+  },
+  "caveBotTasker": {
+    "max": 0,
+    "monster": "",
+    "inProgress": false,
+    "count": 0,
+    "taskName": ""
+  },
+  "pushmax": {
+    "pushMaxRuneId": 3188,
+    "mwallBlockId": 2128,
+    "pushDelay": 1060,
+    "enabled": false,
+    "pushMaxKey": "PageUp"
+  },
+  "alarms": {
+    "privateMsg": [
+
+    ],
+    "customMessage": {
+      "value": ""
+    },
+    "flashClient": [
+
+    ],
+    "lowMana": {
+      "value": 20
+    },
+    "creatureDetected": [
+
+    ],
+    "damageTaken": [
+
+    ],
+    "playerAttack": [
+
+    ],
+    "ignoreFriends": [
+
+    ],
+    "defaultMsg": [
+
+    ],
+    "creatureName": {
+      "value": ""
+    },
+    "lowHealth": {
+      "value": 20
+    },
+    "playerDetected": [
+
+    ]
+  },
+  "foodItems": [
+    {
+      "count": 1,
+      "id": 3582
+    },
+    {
+      "count": 1,
+      "id": 3577
+    },
+    {
+      "count": 1,
+      "id": 3731
+    },
+    {
+      "count": 1,
+      "id": 3585
+    },
+    {
+      "count": 1,
+      "id": 3592
+    },
+    {
+      "count": 1,
+      "id": 3600
+    },
+    {
+      "count": 1,
+      "id": 3601
+    },
+    {
+      "count": 1,
+      "id": 3725
+    },
+    {
+      "count": 1,
+      "id": 3607
+    }
+  ],
+  "moneyItems": [
+    {
+      "id": 3031,
+      "count": 1
+    },
+    {
+      "id": 3035,
+      "count": 1
+    }
+  ],
+  "playerList": {
+    "enemyList": [
+
+    ],
+    "outfits": false,
+    "friendList": [
+
+    ],
+    "blackList": [
+
+    ],
+    "highlight": false,
+    "marks": false,
+    "groupMembers": true
+  },
+  "target_bot": {
+    "ignoredMonsters": [
+      "hive pore"
+    ]
+  },
+  "renameContainers": {
+    "sort": true,
+    "forceOpen": true,
+    "list": [
+      {
+        "items": [
+          {
+            "id": 3031,
+            "count": 1
+          },
+          {
+            "id": 3035,
+            "count": 1
+          },
+          {
+            "id": 3043,
+            "count": 1
+          }
+        ],
+        "value": "Money",
+        "enabled": true,
+        "min": true,
+        "item": 2871
+      },
+      {
+        "items": [
+
+        ],
+        "value": "Loot",
+        "enabled": true,
+        "min": false,
+        "item": 8860
+      },
+      {
+        "items": [
+          {
+            "count": 1,
+            "id": 3098
+          }
+        ],
+        "value": "RoH",
+        "enabled": true,
+        "min": true,
+        "item": 2867
+      },
+      {
+        "items": [
+          {
+            "count": 1,
+            "id": 3052
+          }
+        ],
+        "value": "LR",
+        "item": 2865,
+        "enabled": true,
+        "min": true,
+        "openNext": true
+      },
+      {
+        "items": [
+          {
+            "count": 1,
+            "id": 7643
+          },
+          {
+            "count": 1,
+            "id": 23375
+          },
+          {
+            "count": 1,
+            "id": 237
+          },
+          {
+            "count": 1,
+            "id": 7642
+          },
+          {
+            "count": 1,
+            "id": 238
+          }
+        ],
+        "value": "Potion",
+        "enabled": true,
+        "min": false,
+        "item": 14249
+      },
+      {
+        "items": [
+          {
+            "count": 1,
+            "id": 3032
+          },
+          {
+            "count": 1,
+            "id": 9057
+          },
+          {
+            "count": 1,
+            "id": 3028
+          },
+          {
+            "count": 1,
+            "id": 3033
+          },
+          {
+            "count": 1,
+            "id": 3030
+          },
+          {
+            "count": 1,
+            "id": 3029
+          }
+        ],
+        "value": "Valuables",
+        "item": 2866,
+        "enabled": true,
+        "min": true,
+        "openNext": false
+      },
+      {
+        "items": [
+
+        ],
+        "value": "Unasigned",
+        "enabled": true,
+        "min": false,
+        "item": 21411
+      }
+    ],
+    "purse": false,
+    "enabled": false,
+    "height": 170,
+    "lootBag": false
   },
   "auto_party": {
     "membersInMessageInfoChecked": false,
     "sendWhenLevelNotAllowedChecked": false,
-    "notifyWhenPlayerBlockedChecked": false,
+    "notifyWhenPlayerBlockedChecked": true,
     "callMembersInChatChecked": false,
-    "maxAndMinLevelInMessageInfoChecked": false,
+    "dynamicMinLeveling": true,
     "sendWhenPlayerBlockedChecked": false,
-    "notifyWhenAlreadyInvitedChecked": false,
-    "dynamicMaxLeveling": false,
-    "notifyWhenPartyFullChecked": false,
-    "huntArea": "",
-    "sendWhenPtFullChecked": false,
-    "sendWhenPlayerAlreadyInvitedChecked": false,
-    "maxMembers": 30,
-    "dynamicMinLeveling": false,
+    "notifyWhenAlreadyInvitedChecked": true,
     "staticMaxLevel": 0,
+    "notifyWhenPartyFullChecked": true,
+    "staticMinLevel": 0,
     "experienceInMessageInfoChecked": false,
-    "bonusInMessageInfoChecked": false,
     "partyBlockedPlayers": [
 
     ],
-    "staticMinLevel": 0,
-    "notifyWhenLevelNotAllowedChecked": false
-  }
+    "sendWhenPlayerAlreadyInvitedChecked": false,
+    "maxAndMinLevelInMessageInfoChecked": false,
+    "huntArea": "",
+    "dynamicMaxLeveling": true,
+    "inviteQueue": [
+
+    ],
+    "bonusInMessageInfoChecked": false,
+    "maxMembers": 8,
+    "sendWhenPtFullChecked": false,
+    "notifyWhenLevelNotAllowedChecked": true
+  },
+  "familiarSummonMinMana": 90
 }

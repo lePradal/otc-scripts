@@ -16,9 +16,8 @@ local ICON_ID = 33982
 
 local familiarSummonMacro = macro(MACRO_TIME, "Familiar Summon", function()
     local enoughMana = manapercent() > storage.familiarSummonMinMana
-    local spell_end = getVocationFamiliarSummonSpell(player:getVocation())
-    if enoughMana and not isInPz() and spell_end then
-        local spell = "utevo gran res " .. spell_end
+    local spell = getVocationFamiliarSummonSpell(player:getVocation())
+    if enoughMana and not isInPz() and spell then
         castSpell(spell)
     end
 end)

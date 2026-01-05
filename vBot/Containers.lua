@@ -359,7 +359,7 @@ function reopenBackpacks()
     end
 
     schedule(500, function()
-        local delay = 200
+        local delay = 250
 
         if config.purse then
             local item = getPurse()

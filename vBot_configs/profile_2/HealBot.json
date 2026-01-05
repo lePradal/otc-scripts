@@ -25,7 +25,7 @@
     "paralyseCost": 40,
     "utanaCost": 440,
     "holdUtana": false,
-    "stopHaste": false
+    "stopHaste": true
   },
   "currentHealBotProfile": 1,
   "healbot": [
@@ -69,43 +69,43 @@
       "name": "Knight",
       "itemTable": [
         {
-          "enabled": false,
-          "origin": "HP%",
-          "value": 40,
-          "item": 23375,
+          "enabled": true,
           "index": 5,
+          "origin": "HP%",
+          "item": 23375,
+          "value": 40,
           "sign": "<"
         },
         {
           "sign": "<",
+          "origin": "HP%",
           "value": 50,
-          "index": 3,
           "item": 7643,
-          "origin": "HP%",
+          "index": 3,
           "enabled": true
         },
         {
           "sign": "<",
-          "value": 60,
-          "index": 4,
-          "item": 239,
           "origin": "HP%",
+          "value": 60,
+          "item": 239,
+          "index": 4,
           "enabled": true
         },
         {
           "enabled": true,
-          "index": 1,
-          "origin": "HP%",
-          "item": 236,
           "value": 70,
+          "index": 1,
+          "item": 236,
+          "origin": "HP%",
           "sign": "<"
         },
         {
           "enabled": true,
-          "origin": "MP%",
-          "value": 65,
-          "item": 237,
           "index": 2,
+          "origin": "MP%",
+          "item": 237,
+          "value": 65,
           "sign": "<"
         }
       ]
